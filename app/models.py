@@ -17,6 +17,7 @@ class Comment(db.Model):
     post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     timestamp = db.Column(db.DateTime, server_default=db.func.now())
+    content = db.Column(db.String)
 
 class Post(db.Model):
     __tablename__ = 'posts'

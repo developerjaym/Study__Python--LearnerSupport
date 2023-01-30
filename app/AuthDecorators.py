@@ -14,7 +14,7 @@ def token_required(f):
     @wraps(f)
     def wrap(*args, **kwargs):
         # if request has no token, abort
-        if not request.headers["authorization"]:
+        if "authorization" not in request.headers:
             abort(401)
         token = request.headers["authorization"].split(" ")[1]
 
