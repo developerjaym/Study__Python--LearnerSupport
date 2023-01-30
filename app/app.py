@@ -4,7 +4,7 @@ from AuthClient import AuthClient, UserDto
 from AuthDecorators import token_required
 from flask import Flask, Response, abort, jsonify, make_response, request
 from flask_cors import CORS
-from flask_marshmallow import Marshmallow, fields
+from flask_marshmallow import Marshmallow
 from flask_migrate import Migrate
 from flask_restful import Api, Resource
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
@@ -189,3 +189,6 @@ class ArticleById(Resource):
 
 
 api.add_resource(ArticleById, "/articles/<int:id>")
+
+
+# TODO post answer, post vote to post, post comment to post, select answer, deselect answer
