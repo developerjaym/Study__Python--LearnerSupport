@@ -11,13 +11,23 @@ class User(db.Model):
     img = db.Column(db.String)
     email = db.Column(db.String)
 
+class Vote(db.Model):
+    __tablename__ = 'votes'
+    id = db.Column(db.Integer, primary_key=True)
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
+    author_id = db.Column(db.Integer, db.ForeignKey('users.auth_system_id'))
+    timestamp = db.Column(db.DateTime, server_default=db.func.now())
+    up = db.Column(db.Boolean)
+    author = db.relationship('User', backref='vote')
+
 class Comment(db.Model):
     __tablename__ = 'comments'
     id = db.Column(db.Integer, primary_key=True)
     post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
-    author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    author_id = db.Column(db.Integer, db.ForeignKey('users.auth_system_id'))
     timestamp = db.Column(db.DateTime, server_default=db.func.now())
     content = db.Column(db.String)
+    author = db.relationship('User', backref='comment')
 
 class Post(db.Model):
     __tablename__ = 'posts'
@@ -25,10 +35,12 @@ class Post(db.Model):
     post_type = db.Column(db.String)
     content = db.Column(db.String)
     article_id = db.Column(db.Integer, db.ForeignKey('articles.id'))
-    author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    author_id = db.Column(db.Integer, db.ForeignKey('users.auth_system_id'))
     timestamp = db.Column(db.DateTime, server_default=db.func.now())
     selected = db.Column(db.Boolean)
     comments = db.relationship('Comment', backref='post')
+    votes = db.relationship('Vote', backref='post')
+    author = db.relationship('User', backref='post')
 
 class Tag(db.Model):
     __tablename__ = 'tags'
