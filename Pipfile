@@ -57,6 +57,8 @@ flask-marshmallow = "0.14.0"
 marshmallow-sqlalchemy = "0.28.1"
 requests = "2.28.2"
 pyjwt = "2.6.0"
+gunicorn = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 

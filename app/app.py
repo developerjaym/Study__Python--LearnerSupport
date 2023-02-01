@@ -9,10 +9,12 @@ from flask_migrate import Migrate
 from flask_restful import Api, Resource
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
 from models import db, User, Article, Comment, Post, Tag, Vote
+import os
 
 app = Flask(__name__)
 CORS(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI')
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 # we need this for some reason
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.json.compact = False
