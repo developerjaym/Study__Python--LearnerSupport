@@ -1,0 +1,385 @@
+{
+	"info": {
+		"_postman_id": "afe8a062-f5ce-445f-bb1b-e3b939c78972",
+		"name": "LearnerSupport",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Test",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/test",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Account",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"learnersupport1\",\n    \"password\": \"password\",\n    \"email\": \"learnersupport1@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/users",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "For Token",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "teacher",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"teacher\",\n    \"password\": \"password\",\n    \"email\": \"teacher@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/users/teacher/token",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"users",
+						"teacher",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Account by Username",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/users/teacher",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"users",
+						"teacher"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Question/Article",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InRlYWNoZXIiLCJpZCI6NDMsImV4cCI6MTY3NTEzNDgxOS45MjI2MjcsImFkbWluIjpmYWxzZX0.mjWZ7CfSAm7WitVbZy6Zn16URuOgkOL7dH__a1KkvRI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Does anything get duplicated?\",\n    \"tags\": [\"QA\", \"Testing\", \"Postman\"],\n    \"posts\": [{\n        \"type\":\"QUESTION\",\n        \"content\": \"Did ```this``` get duplicated?\"   \n    }]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/articles",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"articles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Answer",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InRlYWNoZXIiLCJpZCI6NDMsImV4cCI6MTY3NTEzNDgxOS45MjI2MjcsImFkbWluIjpmYWxzZX0.mjWZ7CfSAm7WitVbZy6Zn16URuOgkOL7dH__a1KkvRI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"content\": \"This ```is``` the answer?\"  \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/articles/7/answers",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"articles",
+						"7",
+						"answers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Comment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InRlYWNoZXIiLCJpZCI6NDMsImV4cCI6MTY3NTEzNDgxOS45MjI2MjcsImFkbWluIjpmYWxzZX0.mjWZ7CfSAm7WitVbZy6Zn16URuOgkOL7dH__a1KkvRI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"content\": \"This.\"  \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/articles/7/posts/4/comments",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"articles",
+						"7",
+						"posts",
+						"4",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Vote",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InRlYWNoZXIiLCJpZCI6NDMsImV4cCI6MTY3NTEzNDgxOS45MjI2MjcsImFkbWluIjpmYWxzZX0.mjWZ7CfSAm7WitVbZy6Zn16URuOgkOL7dH__a1KkvRI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"up\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/articles/7/posts/4/votes",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"articles",
+						"7",
+						"posts",
+						"4",
+						"votes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Select",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InRlYWNoZXIiLCJpZCI6NDMsImV4cCI6MTY3NTEzNDgxOS45MjI2MjcsImFkbWluIjpmYWxzZX0.mjWZ7CfSAm7WitVbZy6Zn16URuOgkOL7dH__a1KkvRI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/articles/7/posts/4/selected",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"articles",
+						"7",
+						"posts",
+						"4",
+						"selected"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Select Copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InRlYWNoZXIiLCJpZCI6NDMsImV4cCI6MTY3NTEzNDgxOS45MjI2MjcsImFkbWluIjpmYWxzZX0.mjWZ7CfSAm7WitVbZy6Zn16URuOgkOL7dH__a1KkvRI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/articles/7/posts/4/selected",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"articles",
+						"7",
+						"posts",
+						"4",
+						"selected"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Article by Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/articles/7",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"articles",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Articles",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/articles",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"articles"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

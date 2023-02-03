@@ -10,6 +10,7 @@ from flask_restful import Api, Resource
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
 from models import db, User, Article, Comment, Post, Tag, Vote
 import os
+import time
 
 app = Flask(__name__)
 CORS(app)
@@ -119,6 +120,9 @@ plural_articles_schema = ArticleSchema(many=True)
 
 class Users(Resource):
     def post(self):
+        exists = db.session.query(User.id).filter_by(username=request.json['username']).first() is not None
+        if exists:
+            abort(409)
         response = AuthClient.post_account(request.json)
         # TODO handle exception
         new_user = User(
